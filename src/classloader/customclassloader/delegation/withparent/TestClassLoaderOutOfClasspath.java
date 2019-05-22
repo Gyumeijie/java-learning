@@ -1,6 +1,6 @@
-package classloader.customclassloader.delegation;
+package classloader.customclassloader.delegation.withparent;
 
-import classloader.customclassloader.CustomClassLoader;
+import classloader.customclassloader.CustomClassLoaderWithParent;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,18 +13,18 @@ public class TestClassLoaderOutOfClasspath {
 
       // File not in `classpath`
       String path = "file:///Users/yumeijie/idea-workspace/java-learning/resources/classloaders/";
+      URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{new URL(path)});
+      CustomClassLoaderWithParent customClassLoader = new CustomClassLoaderWithParent(new URL(path), urlClassLoader);
 
-      // Output: classloader.customclassloader.CustomClassLoader@33c7353a
-      CustomClassLoader customClassLoader = new CustomClassLoader(new URL(path));
+      // Output: java.net.URLClassLoader@19469ea2, delegates to the parent: URLClassLoader
       Class<?> klassOne = customClassLoader.loadClass("SampleClass");
       System.out.println(klassOne.getClassLoader());
 
       // Output: java.net.URLClassLoader@19469ea2
-      URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{new URL(path)});
       Class<?> klassTwo = urlClassLoader.loadClass("SampleClass");
       System.out.println(klassTwo.getClassLoader());
 
-      // Output: false
+      // Output: true
       System.out.println(klassOne.equals(klassTwo));
    }
 }

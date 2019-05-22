@@ -3,14 +3,13 @@ package classloader.customclassloader;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-public class CustomClassLoader extends URLClassLoader {
+public class CustomClassLoaderWithParent extends URLClassLoader {
    private URL url;
 
-   public CustomClassLoader(URL url) {
-      super(new URL[]{url});
+   public CustomClassLoaderWithParent(URL url, ClassLoader parent) {
+      super(new URL[]{url}, parent);
       this.url = url;
    }
-
 
    /**
     * The findClass method get called only the class without setting parent, or
