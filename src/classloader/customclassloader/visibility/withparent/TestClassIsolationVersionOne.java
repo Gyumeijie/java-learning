@@ -43,7 +43,7 @@ public class TestClassIsolationVersionOne {
       System.out.println(klassTwo.getClassLoader());
       method = klassTwo.getDeclaredMethod("childMethod");
       instance = klassTwo.getDeclaredConstructors()[0].newInstance();
-      // parent class name: newParentClass
+      // parent class name: newParentClassymj
       method.invoke(instance);
 
 
