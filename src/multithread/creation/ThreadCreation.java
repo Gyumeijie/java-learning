@@ -22,6 +22,8 @@ public class ThreadCreation {
 
       // Thread threadByImplement = new Thread(new ThreadByImplement());
       // threadByImplement.start();
+
+      // The threadByImplement has only method called run()
       ThreadByImplement threadByImplement = new ThreadByImplement();
       threadByImplement.run();
    }

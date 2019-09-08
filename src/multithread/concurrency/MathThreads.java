@@ -1,4 +1,4 @@
-package multithread.join;
+package multithread.concurrency;
 
 class MathSin extends Thread {
    public double deg;
@@ -61,13 +61,17 @@ public class MathThreads {
       ct.start();
       tt.start();
 
+      /*
+       * Worker threads are concurrently executed on shared or dedicated CPUs
+       * depending on the type of machine.
+       */
       try {
          st.join();
          ct.join();
          tt.join();
          double res = st.res + ct.res + tt.res;
          System.out.println("Sum of sin, cos, tan = " + res);
-      } catch (InterruptedException e) {
+      } catch (Exception e) {
 
       }
    }

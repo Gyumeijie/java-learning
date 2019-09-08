@@ -7,17 +7,17 @@ public class Account {
       this.mBalance = balance;
    }
 
-   public void deposit(Integer amount) {
+   public synchronized void deposit(Integer amount) {
       if (amount < 0) {
          throw new IllegalArgumentException("Can't deposit.");
       }
       this.mBalance += amount;
-      System.out.println("Deposit " + amount + " in thread"
-              + Thread.currentThread().getName()
+      System.out.println("Deposit " + amount + " in thread "
+              + Thread.currentThread().getId()
               + ", balance is " + mBalance);
    }
 
-   public void withdraw(Integer amount) {
+   public synchronized void withdraw(Integer amount) {
       if (amount < 0 || amount > this.mBalance) {
          throw new IllegalArgumentException("Can't withdraw");
       }
